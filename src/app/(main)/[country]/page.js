@@ -1,11 +1,11 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import LineChart from "@/components/SingleCountry/LineChart";
 import About from "@/components/SingleCountry/About";
 
-export default function page({ params }) {
+export default function Page({ params }) {
   const { country } = params;
-  const [countryData, setCountryData] = React.useState([]);
+  const [countryData, setCountryData] = useState([]);
 
   useEffect(() => {
     const fetchData = async (country) => {
