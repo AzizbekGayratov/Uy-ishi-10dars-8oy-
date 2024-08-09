@@ -5,6 +5,7 @@ import { Table } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { addWatchList, removeWatchList, openDrawer } from "@/store/dataSlice";
+import Image from "next/image";
 
 export default function TableRowItem({ id, data }) {
   const router = useRouter();
@@ -28,7 +29,12 @@ export default function TableRowItem({ id, data }) {
           router.push(`/${data.cca2}`);
         }}
       >
-        Sliver
+        <Image
+          src={data.flags.svg}
+          width={22}
+          height={22}
+          alt={data.name.common}
+        />
       </Table.Cell>
       <Table.Cell
         onClick={() => {

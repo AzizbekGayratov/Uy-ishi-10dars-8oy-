@@ -1,4 +1,6 @@
 import { Inter } from "next/font/google";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });

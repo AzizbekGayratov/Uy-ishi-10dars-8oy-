@@ -12,8 +12,8 @@ export default function CarouselComponent({ items }) {
         {items.map((item) => (
           <div
             key={item.cca2}
-            onClick={() => router.push(`/${item.cca2}`)}
             className="flex  h-full items-center justify-center bg-gray-400 bg-opacity-20 dark:bg-gray-700 dark:text-white"
+            onClick={() => router.push(`/${item.cca2}`)}
           >
             <div className="flex gap-20 items-center justify-center">
               <Image

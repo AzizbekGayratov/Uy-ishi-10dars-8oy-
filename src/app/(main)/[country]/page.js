@@ -1,18 +1,28 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import LineChart from "@/components/SingleCountry/LineChart";
+import About from "@/components/SingleCountry/About";
 
-export default async function page({ params }) {
+export default function page({ params }) {
   const { country } = params;
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/alpha/${country}`
-  );
-  const countryData = await response.json();
+  const [countryData, setCountryData] = React.useState([]);
+
+  useEffect(() => {
+    const fetchData = async (country) => {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/alpha/${country}`
+      );
+      const data = await response.json();
+      setCountryData(data);
+    };
+    fetchData(country);
+  }, []);
 
   return (
     <>
-      <div className="text-white grid grid-cols-5 gap-20 mt-10">
+      <div className="text-white grid grid-cols-5 gap-20 mt-10 pl-16">
         <div className="col-span-2">
-          <h2 className="text-3xl"></h2>
+          <About countryData={countryData[0]} />
         </div>
         <div className="col-span-3">
           <LineChart />
