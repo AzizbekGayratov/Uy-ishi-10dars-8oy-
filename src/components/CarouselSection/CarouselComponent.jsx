@@ -8,7 +8,7 @@ export default function CarouselComponent({ items }) {
   const router = useRouter();
   return (
     <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
-      <Carousel slideInterval={800} pauseOnHover>
+      <Carousel slideInterval={800}>
         {items.map((item) => (
           <div
             key={item.cca2}

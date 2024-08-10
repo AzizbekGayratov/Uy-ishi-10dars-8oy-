@@ -4,8 +4,9 @@ import { BsEyeFill } from "react-icons/bs";
 import { Table } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { addWatchList, removeWatchList, openDrawer } from "@/store/dataSlice";
+import { addWatchList, removeWatchList } from "@/store/dataSlice";
 import Image from "next/image";
+import Swal from "sweetalert2";
 
 export default function TableRowItem({ id, data }) {
   const router = useRouter();
@@ -66,10 +67,36 @@ export default function TableRowItem({ id, data }) {
           id={data.cca2}
           onChange={() => {
             if (data.isInMyWatchList) {
-              dispatch(removeWatchList(data.id));
+              Swal.fire({
+                icon: "warning",
+                text: "Are you sure?",
+                showCancelButton: true,
+                confirmButtonText: "Yes",
+                confirmButtonColor: "#0891b2",
+                cancelButtonText: "No",
+                cancelButtonColor: "red",
+                reverseButtons: true,
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  dispatch(removeWatchList(data.id));
+                }
+              });
             } else {
-              dispatch(addWatchList(data.id));
-              dispatch(openDrawer());
+              Swal.fire({
+                icon: "success",
+                text: "Add to watchlist",
+                showCancelButton: true,
+                confirmButtonColor: "#0891b2",
+                reverseButtons: true,
+                confirmButtonText: "Ok",
+                cancelButtonText: "No",
+                cancelButtonColor: "red",
+                reverseButtons: true,
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  dispatch(addWatchList(data.id));
+                }
+              });
             }
           }}
           defaultChecked={data.isInMyWatchList}
